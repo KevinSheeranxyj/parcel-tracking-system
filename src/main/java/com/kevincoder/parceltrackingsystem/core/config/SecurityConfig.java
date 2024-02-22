@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .csrf().disable()
+      .csrf().disable()// Disable CSRF attack in this case
       .authorizeRequests()
       .antMatchers(URL_WHITELIST).permitAll() // Only whitelisted URL can access
       .anyRequest().authenticated()
