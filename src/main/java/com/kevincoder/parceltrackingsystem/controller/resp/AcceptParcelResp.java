@@ -1,8 +1,13 @@
 package com.kevincoder.parceltrackingsystem.controller.resp;
 
-import com.kevincoder.parceltrackingsystem.model.Parcel;
+import lombok.Data;
 
+@Data
 public class AcceptParcelResp {
 
-    public Parcel parcel;
+    public Long id;
+    public boolean pickedUp;
+    public String description;
+    public String arrivalDate;
+    public Long guestId;
 }

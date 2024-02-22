@@ -1,6 +1,6 @@
 package com.kevincoder.parceltrackingsystem.service;
 
-import com.kevincoder.parceltrackingsystem.exception.SystemException;
+import com.kevincoder.parceltrackingsystem.exception.BusinessException;
 import com.kevincoder.parceltrackingsystem.model.Guest;
 import com.kevincoder.parceltrackingsystem.model.Parcel;
 import com.kevincoder.parceltrackingsystem.repository.GuestRepository;
@@ -30,7 +30,7 @@ public class GuestService {
     @Transactional
     public void checkOut(Long guestId) {
         Guest guest = guestRepository.findById(guestId)
-                .orElseThrow(() -> new SystemException("0001", "Guest not found."));
+                .orElseThrow(() -> new BusinessException("0001", "Guest not found."));
         guest.setCheckOutDate(LocalDate.now());
         guestRepository.save(guest);
         // Get parcels ready for pickUp

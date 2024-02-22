@@ -1,6 +1,6 @@
 package com.kevincoder.parceltrackingsystem.service;
 
-import com.kevincoder.parceltrackingsystem.exception.SystemException;
+import com.kevincoder.parceltrackingsystem.exception.BusinessException;
 import com.kevincoder.parceltrackingsystem.model.Parcel;
 import com.kevincoder.parceltrackingsystem.repository.ParcelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class ParcelService {
     public void acceptParcel(Parcel parcel) {
         // Check if the guest is currently checked in
         if (!guestService.isGuestCurrentlyCheckedIn(parcel.getGuestId())) {
-            throw new SystemException("0002","Cannot accept parcel. Guest is not currently checked in.");
+            throw new BusinessException("0002","Cannot accept parcel. Guest is not currently checked in.");
         }
         parcelRepository.save(parcel);
     }

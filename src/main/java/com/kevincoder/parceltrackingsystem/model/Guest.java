@@ -19,9 +19,9 @@ public class Guest {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "checkInDate")
+    @Column(name = "check_in_date", columnDefinition="DATE")
     private LocalDate checkInDate;
-    @Column(name = "checkOutDate")
+    @Column(name = "check_out_date", columnDefinition="DATE")
     private LocalDate checkOutDate; // Considered checked out if the checkOutDate in the past
 
 }

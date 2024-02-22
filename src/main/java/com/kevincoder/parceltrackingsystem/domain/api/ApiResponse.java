@@ -13,7 +13,7 @@ public class ApiResponse<T> {
 
     public ApiHeader apiHeader;
 
-    public ApiResponse(ApiHeader header,T result) {
+    public ApiResponse(ApiHeader header, T result) {
         this.apiHeader = header;
         this.result = result;
     }

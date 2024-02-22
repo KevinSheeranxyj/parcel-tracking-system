@@ -1,8 +1,8 @@
 package com.kevincoder.parceltrackingsystem.controller;
 
 import com.kevincoder.parceltrackingsystem.constant.ApiHeaderConstant;
-import com.kevincoder.parceltrackingsystem.controller.dto.GuestCheckInDto;
-import com.kevincoder.parceltrackingsystem.controller.resp.CheckOutGuestResp;
+import com.kevincoder.parceltrackingsystem.controller.req.GuestCheckInReq;
+import com.kevincoder.parceltrackingsystem.controller.resp.GuestCheckOutResp;
 import com.kevincoder.parceltrackingsystem.controller.resp.GuestCheckInResp;
 import com.kevincoder.parceltrackingsystem.domain.api.ApiRequest;
 import com.kevincoder.parceltrackingsystem.domain.api.ApiResponse;
@@ -25,20 +25,23 @@ public class GuestController {
     ParcelService parcelService;
 
     @PostMapping("/check-in")
-    public ApiResponse<GuestCheckInResp> checkIn(@RequestBody ApiRequest<GuestCheckInDto> request) {
-        log.info("[POST] /check-in {}", request);
-        GuestCheckInDto checkInDto = request.query;
+    public ApiResponse<GuestCheckInResp> checkIn(@RequestBody ApiRequest<GuestCheckInReq> request) {
+        log.info("[POST] /check-in {}", request.query);
+        GuestCheckInReq checkInDto = request.query;
         GuestCheckInResp resp = new GuestCheckInResp();
         Guest guest = new Guest();
         guest.setCheckInDate(checkInDto.getCheckInDate());
         guest.setName(checkInDto.getName());
-        resp.guest = guestService.checkIn(guest);
+        Guest result = guestService.checkIn(guest);
+        resp.checkInDate = result.getCheckInDate().toString();
+        resp.name = result.getName();
+        resp.id = result.getId();
         return new ApiResponse<>(ApiHeaderConstant.SUCCESS, resp);
     }
 
 
     @PostMapping("/check-out/{guestId}")
-    public ApiResponse<CheckOutGuestResp> checkOut(@PathVariable("guestId") Long guestId) {
+    public ApiResponse<GuestCheckOutResp> checkOut(@PathVariable("guestId") Long guestId) {
         log.info("[POST] /check-out/{}", guestId);
         try {
             guestService.checkOut(guestId);
