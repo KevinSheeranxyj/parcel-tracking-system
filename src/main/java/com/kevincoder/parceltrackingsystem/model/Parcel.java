@@ -1,6 +1,5 @@
 package com.kevincoder.parceltrackingsystem.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

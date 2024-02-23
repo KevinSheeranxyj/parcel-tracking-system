@@ -1,6 +1,6 @@
 # Spring Boot Project [parcel-tracking-system] 
 
-## Before you get started
+## Quick Start
 
 * Please make sure you installed JDK 1.8, after that you can navigate to Application.class to boot up the project.
 
